@@ -52,6 +52,11 @@ class FirestoreResponse {
             return when (type) {
                 "stringValue" -> it.value.asString
                 "integerValue" -> it.value.asInt
+                "doubleValue" -> it.value.asDouble
+                "timestampValue" -> it.value.asString
+                "bytesValue" -> it.value.asString
+                "referenceValue" -> it.value.asString
+                "geoPointValue" -> it.value.asString
                 "booleanValue" -> it.value.asBoolean
                 "arrayValue" -> handleArrayValue(gson, it.value.asJsonObject.entrySet().first().value.asJsonArray)
                 "mapValue" -> parseFields(gson, it.value.asJsonObject.entrySet().first().value.asJsonObject)
