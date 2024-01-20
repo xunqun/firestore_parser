@@ -5,7 +5,7 @@ import com.nuazure.firestore.FirestoreResponse
 
 fun main(args: Array<String>) {
     val jsonData = """{
-    "name": "projects/pubu-ebooks-android/databases/(default)/documents/proxy_data_omed/data",
+    "name": "projects/testproject/databases/(default)/documents/proxy_data_omed/data",
     "fields": {
         "restrictedCategories": {
             "arrayValue": {
