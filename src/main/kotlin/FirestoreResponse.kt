@@ -7,21 +7,26 @@ import com.google.gson.JsonObject
 
 class FirestoreResponse {
     companion object {
-
-        fun parse(json: String): FirestoreResponse {
+        /**
+         * Parse a Firestore document into a FirestoreResponse object
+         *
+         * @param document Firestore document which is a JSON string retrieving by Firestore REST API
+         * @return FirestoreResponse representing as a Firestore response document
+         */
+        fun parseDocument(document: String): FirestoreResponse {
             val gson = Gson()
 
-            val jsonObject = gson.fromJson(json, JsonObject::class.java)
+            val jsonObject = gson.fromJson(document, JsonObject::class.java)
 
             val fields = jsonObject.getAsJsonObject("fields")
             val fieldsMap = parseFields(gson, fields)
 
-            val createTime = jsonObject.getAsJsonObject("createTime").getAsString()
-            val updateTime = jsonObject.getAsJsonObject("updateTime").getAsString()
-            val name = jsonObject.getAsJsonObject("name").getAsString()
+            val createTime = jsonObject.get("createTime").asString
+            val updateTime = jsonObject.get("updateTime").asString
+            val name = jsonObject.get("name").asString
 
 
-            print(fieldsMap)
+            print(gson.toJson(fieldsMap))
             return FirestoreResponse(name, fieldsMap, createTime, updateTime)
         }
 
